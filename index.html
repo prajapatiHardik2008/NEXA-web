@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nexa AI</title>
+
+<style>
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ================= THEME VARIABLES ================= */
+body.dark {
+    --bg-main: radial-gradient(circle at top, #1e1e2f, #0a0a14);
+    --bg-nav: rgba(15,15,25,0.95);
+    --text-main: #eaeaea;
+    --accent: #7cf0ff;
+    --input-bg: #12121c;
+    --border: #2f2f45;
+    --btn-bg: linear-gradient(135deg, #7cf0ff, #4aa3ff);
+    --btn-text: #0a0a14;
+    --card-bg: rgba(18,18,28,0.9);
+}
+
+body.light {
+    --bg-main: #f4f6fb;
+    --bg-nav: #ffffff;
+    --text-main: #222;
+    --accent: #0077ff;
+    --input-bg: #ffffff;
+    --border: #cccccc;
+    --btn-bg: #0077ff;
+    --btn-text: #ffffff;
+    --card-bg: #ffffff;
+}
+
+/* ================= BODY ================= */
+body {
+    min-height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background 0.6s ease, color 0.4s ease;
+}
+
+/* ================= NAVBAR ================= */
+.nav-bar {
+    width: 100%;
+    height: 70px;
+    background: var(--bg-nav);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    border-bottom: 1px solid var(--border);
+    animation: slideDown 0.6s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+/* LEFT */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 42px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { filter: drop-shadow(0 0 5px var(--accent)); }
+    to   { filter: drop-shadow(0 0 15px var(--accent)); }
+}
+
+.brand {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* CENTER */
+.nav-input {
+    width: 220px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text-main);
+    outline: none;
+}
+
+/* RIGHT */
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+/* BUTTONS */
+.nav-btn {
+    margin-left: 10px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.nav-btn.outline {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+/* MODE BUTTON ICON */
+#mode {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ================= MAIN ================= */
+h2 {
+    margin: 40px 0 25px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    animation: fadeIn 0.8s ease;
+}
+
+#qust {
+    width: 320px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text-main);
+    outline: none;
+}
+
+#qust:focus {
+    border-color: var(--accent);
+}
+
+/* START BUTTON */
+button {
+    margin-top: 18px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* RESULT CARD */
+#result {
+    margin-top: 25px;
+    max-width: 420px;
+    padding: 15px 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    animation: fadeIn 0.5s ease;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body class="dark">
+
+<!-- ========== NAVBAR ========== -->
+<nav class="nav-bar">
+    <div class="nav-left">
+        <img src="{{ url_for('static', filename='images/NEXA.png') }}" class="logo">
+        <span class="brand">NEXA AI</span>
+    </div>
+
+  
+
+    <div>
+        <button id="mode" class="nav-btn">🌙 Dark</button>
+    </div>
+    <div><button class="help_btn">help</button></div>
+</nav>
+
+<!-- ========== MAIN ========== -->
+<h2>NEXA AI</h2>
+
+<input type="text" id="qust" placeholder="Ask something...">
+<button onclick="run()">START</button>
+
+<div id="result"></div>
+
+<!-- ========== JS ========== -->
+<script>
+/* ===== THEME TOGGLE ===== */
+const modeBtn = document.getElementById("mode");
+
+modeBtn.addEventListener("click",()=>{
+    document.body.classList.toggle("light");
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("light")){
+        modeBtn.innerHTML="🌙 Dark";
+    }else{
+        modeBtn.innerHTML="☀️ Light";
+    }
+});
+
+/* ===== YOUR AI JS (SAFE) ===== */
+let voices=[];
+function loadVoices(){ voices=window.speechSynthesis.getVoices(); }
+window.speechSynthesis.onvoiceschanged=loadVoices;
+
+function Texttosp(text){
+    const u=new SpeechSynthesisUtterance(text);
+    const f=voices.find(v=>v.name.toLowerCase().includes("zira"));
+    if(f) u.voice=f;
+    u.pitch=1.2;
+    window.speechSynthesis.speak(u);
+}
+
+async function run(){
+    const q=document.getElementById("qust").value;
+    document.getElementById("result").innerHTML+="Thinking...<br>";
+
+    const r=await fetch("/run",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({question:q})
+    });
+
+    const d=await r.json();
+    document.getElementById("result").innerHTML+=`<b>You:</b> ${q}<br><i>${d.ans}</i><br>`;
+    Texttosp(d.ans);
+}
+help_btns = document.querySelector(".help_btn");
+help_btns.addEventListener('click',()=>{
+    document.location = 'help.html';
+});
+</script>
+
+</body>
+</html>

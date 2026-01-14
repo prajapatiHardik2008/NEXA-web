@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELP CENTER </title>
+    <style>
+/* ================= RESET ================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ================= DARK THEME VARIABLES ================= */
+body.dark{
+    --bg-main: radial-gradient(circle at top, #1e1e2f, #0a0a14);
+    --text-main: #eaeaea;
+    --accent: #7cf0ff;
+    --input-bg: #12121c;
+    --btn-bg: linear-gradient(135deg, #7cf0ff, #4aa3ff);
+    --btn-text: #0a0a14;
+    --card-bg: rgba(18,18,28,0.95);
+    --border: rgba(124,240,255,0.35);
+}
+
+/* ================= BODY ================= */
+body{
+    min-height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-main);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition: background 0.6s ease, color 0.4s ease;
+}
+
+/* ================= HEADINGS ================= */
+h2{
+    margin: 30px 0 15px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    animation: fadeIn 0.8s ease;
+    text-align: center;
+}
+
+/* ================= INPUT ================= */
+#qust{
+    width: 90%;
+    max-width: 320px;
+
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    background: var(--input-bg);
+    color: var(--text-main);
+    outline: none;
+}
+
+#qust:focus{
+    border-color: var(--accent);
+}
+
+/* ================= BUTTON ================= */
+button{
+    margin-top: 18px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+
+    background: var(--btn-bg);
+    color: var(--btn-text);
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(124,240,255,0.35);
+}
+
+/* ================= RESULT CARD ================= */
+#result{
+    margin-top: 25px;
+    width: 90%;
+    max-width: 420px;
+
+    padding: 15px 20px;
+    background: var(--card-bg);
+
+    border-radius: 12px;
+    border: 1px solid var(--border);
+
+    animation: fadeIn 0.5s ease;
+}
+
+/* ================= MEMBERSUP DIV (FIXED) ================= */
+.membersup{
+    margin-top: 25px;
+    font-family: Cascadia Code;
+    width: 90%;
+    max-width: 500px;
+    min-height: 200px;
+
+    background: wheat;
+    color: black;
+
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     flex-direction: column;
+    font-size: 1rem;
+    text-align: center;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.membersup:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(124,240,255,0.25);
+}
+.consup{
+    margin-top: 25px;
+    font-family: Cascadia Code;
+    width: 90%;
+    max-width: 500px;
+    min-height: 200px;
+
+    background: wheat;
+    color: black;
+
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     flex-direction: column;
+    font-size: 1rem;
+    text-align: center;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.consup:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(124,240,255,0.25);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px){
+    h2{
+        font-size: 1.2rem;
+    }
+
+    .membersup{
+        min-height: 160px;
+    }
+}
+
+    </style>
+</head>
+<body class="dark">
+    <center><h2>HELP CENTER </h2></center>
+    <center><h2>Content Us</h2></center>
+    <div class="membersup">
+       Talk To A Member Of Our Team.
+       <br>
+       <button id="chat-btn">Chat Now</button>     
+    </div>
+    <div class="consup">
+        Content
+        Phone Number :- XXX - XXX - XXXX <br>
+        E-mail :-       xyz@gmail.com <br>
+        WhatsApp Number :- XXX - XXX - XXXX
+    </div>
+    <button id="bpage">Back TO Home Page </button>
+<script>
+    let chatbtm = document.querySelector("#chat-btn");
+    let bpage =  document.querySelector("#bpage");
+    chatbtm.addEventListener("click",()=>{
+        document.location = 'https://www.instagram.com/Prajapati__Hardik__24/?__pwa=1';
+    });
+    bpage.addEventListener("click",()=>{
+        document.location = 'index.html';
+    });
+</script>
+</body>
+</html>
